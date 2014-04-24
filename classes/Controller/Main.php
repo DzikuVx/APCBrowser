@@ -4,33 +4,22 @@ namespace Controller;
 use Exception;
 use \General\CustomException as CustomException;
 use General\Debug;
+use Interfaces\Singleton;
 use Listeners\LowLevelMessage;
 use Listeners\Message;
 
-/**
- *
- * @property mixed mainContentProcessed
- * @author Paweł
- * @brief Główny kontroler aplikacji uruchamiający kontrolery właściwe w zależności żądań użytkownika
- *
- */
-class Main extends Base implements \Interfaces\Singleton {
+class Main extends Base implements Singleton {
 
 	private static $instance;
 
 	private $aParams = array();
 	
-	/**
-	 * Konstruktor prywatny
-	 */
 	private function __construct() {
 		$this->aParams = $_REQUEST;
 	}
 
 	/**
-	 *
-	 * Pobranie instancji
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	static public function getInstance() {
 
@@ -39,14 +28,13 @@ class Main extends Base implements \Interfaces\Singleton {
 		}
 
 		if (empty(self::$instance)) {
-			throw new \Exception('Main Controller was unable to initiate');
+			throw new Exception('Main Controller was unable to initiate');
 		}
 
 		return self::$instance;
 	}
 
 	/**
-	 * Główny kontroler
 	 * @return string
 	 */
 	public function get() {
@@ -58,9 +46,6 @@ class Main extends Base implements \Interfaces\Singleton {
 
 		try {
 
-			/*
-			 * Rejestracja listenerów
-			*/
 			Message::getInstance()->register($this->aParams, $template);
 
 			if (empty ( $this->aParams ['class'] )) {

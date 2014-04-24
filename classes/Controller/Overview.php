@@ -6,8 +6,6 @@ use Exception;
 
 class Overview extends Base implements \Interfaces\Singleton {
 
-	protected $aExcluded = array();
-
 	private static $instance;
 
 	private function __construct()
