@@ -1,7 +1,35 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-12">Nothing here {{'yet' + '!'}}</div>
-    </div>
+        <div class="col-md-12">
 
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>{T:Key}</th>
+                        <th>{T:Hits}</th>
+                        <th>{T:Size}</th>
+                        <th>{T:Last accessed at}</th>
+                        <th>{T:Last modified at}</th>
+                        <th>{T:Created at}</th>
+                        <th>{T:Timeout}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="entry in entries">
+                        <td>{{entry.key}}</td>
+                        <td>{{entry.hits}}</td>
+                        <td>{{entry.size}}</td>
+                        <td>{{entry.accessed}}</td>
+                        <td>{{entry.modified}}</td>
+                        <td>{{entry.created}}</td>
+                        <td>{{entry.timeout}}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+
+        </div>
+    </div>
 </div>
