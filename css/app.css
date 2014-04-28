@@ -2,3 +2,7 @@ body {
     padding-top: 70px;
     padding-bottom: 30px;
 }
+
+.nav, .pagination, .carousel, .panel-title a {
+    cursor: pointer;
+}
