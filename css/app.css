@@ -10,3 +10,9 @@ body {
 .entry-list td {
     cursor: pointer;
 }
+
+.entry-data {
+    word-wrap: break-word;
+    max-height: 300px;
+    overflow-y: scroll;
+}

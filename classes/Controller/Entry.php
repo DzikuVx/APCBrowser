@@ -37,15 +37,7 @@ class Entry extends Base implements \Interfaces\Singleton {
 
         $oModel = new CacheEntry();
 
-        $result = $oModel->get($aParams['key']);
-
-        var_dump($result);
-
-        $result['mtime'] = Formater::formatDateTime($result['mtime']);
-        $result['atime'] = Formater::formatDateTime($result['atime']);
-        $result['ctime'] = Formater::formatDateTime($result['ctime']);
-
-        $template = $result;
+        $template['data'] = $oModel->get($aParams['key']);
     }
 
 }
