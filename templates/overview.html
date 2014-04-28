@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12">
 
-            <table class="table table-striped">
+            <table class="table table-striped entry-list">
                 <thead>
                     <tr>
                         <th>{T:Key}</th>
@@ -16,7 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-ng-repeat="entry in entries">
+                    <tr data-ng-repeat="entry in entries" data-ng-click="entryDetails(entry)">
                         <td>{{entry.key}}</td>
                         <td>{{entry.nhits}}</td>
                         <td>{{entry.mem_size}}</td>
@@ -33,3 +33,23 @@
         </div>
     </div>
 </div>
+
+<script type="text/ng-template" id="entryDetailModal.html">
+    <div class="modal-header">
+        <h3>Entry details</h3>
+    </div>
+    <div class="modal-body">
+        <ul>
+            <li><strong>{T:Key}</strong>: {{data.key}}</li>
+            <li><strong>{T:Hits}</strong>: {{data.nhits}}</li>
+            <li><strong>{T:Size}</strong>: {{data.mem_size}}</li>
+            <li><strong>{T:Last accessed at}</strong>: {{data.atime}}</li>
+            <li><strong>{T:Last modified at}</strong>: {{data.mtime}}</li>
+            <li><strong>{T:Created at}</strong>: {{data.ctime}}</li>
+            <li><strong>{T:Timeout}</strong>: {{data.ttl}}[s]</li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="close()">OK</button>
+    </div>
+</script>

@@ -6,3 +6,7 @@ body {
 .nav, .pagination, .carousel, .panel-title a {
     cursor: pointer;
 }
+
+.entry-list td {
+    cursor: pointer;
+}
