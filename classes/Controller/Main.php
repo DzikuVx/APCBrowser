@@ -4,6 +4,7 @@ namespace Controller;
 use Exception;
 use \General\CustomException as CustomException;
 use General\Debug;
+use Helper\APCDetector;
 use Interfaces\Singleton;
 use Listeners\LowLevelMessage;
 use Listeners\Message;
@@ -94,7 +95,9 @@ class Main extends Base implements Singleton {
 		$template->add('menu', '');
 		$template->add('mainContent', '');
 		$template->add('pageTitle', '{T:Project Name}');
-		
+
+        $template->add('current-apc-mode', APCDetector::getInstance()->getApcMode());
+
 		$sHtml = (string) $template;
 		
 		/*

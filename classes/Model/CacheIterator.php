@@ -8,7 +8,7 @@ class CacheIterator extends Base implements \Interfaces\Model {
 
         //TODO add regexp to get only some
 
-        $oIterator = new \APCIterator("");
+        $oIterator = new \APCIterator("user");
 
         $aRetVal = array();
 
