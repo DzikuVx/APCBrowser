@@ -4,6 +4,7 @@ namespace View;
 
 use General\Formater;
 use General\Templater;
+use Model\Factory;
 
 class Overview extends Base {
 
@@ -11,16 +12,15 @@ class Overview extends Base {
 	
 	public function __construct(array $aParams) {
 		parent::__construct($aParams);
-		
-		$this->model = new \Model\CacheIterator();
-		
+
+        $oFactory = new Factory();
+
+		$this->model = $oFactory->createIterator();
 	}
 	
 	public function mainpage()
 	{
 		$oTemplate = new Templater('overview.html');
-
-
 
 		return (string) $oTemplate;
 	}
