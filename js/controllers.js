@@ -2,15 +2,15 @@ var apcBrowserApp = angular.module('apcBrowser', ['ui.bootstrap']);
 
 apcBrowserApp.controller('EntryListController', function ($scope, $http, $modal, $log) {
 
-    $http.get('api.php?controller=EntryList').success(function(data) {
-        $scope.entries = data;
-    });
-
     $scope.alerts = [];
 
-    $scope.items = ['item1', 'item2', 'item3'];
+    $scope.load = function () {
+        $http.get('api.php?controller=EntryList').success(function (data) {
+            $scope.entries = data;
+        });
+    };
 
-    $scope.closeAlert = function(index) {
+    $scope.closeAlert = function (index) {
         $scope.alerts.splice(index, 1);
     };
 
@@ -31,6 +31,9 @@ apcBrowserApp.controller('EntryListController', function ($scope, $http, $modal,
                         },
                         entryValue: function () {
                             return entryValue
+                        },
+                        parent: function () {
+                            return $scope
                         }
                     }
                 });
@@ -39,12 +42,31 @@ apcBrowserApp.controller('EntryListController', function ($scope, $http, $modal,
             });
     };
 
+    $scope.load();
+
 });
 
-var EntryModalCtrl = function ($scope, $modalInstance, data, entryValue) {
+var EntryModalCtrl = function ($scope, $modalInstance, $http, data, entryValue, parent) {
 
     $scope.data = data;
     $scope.entryValue = entryValue;
+    $scope.parent = parent;
+
+    $scope.dropEntry = function (data) {
+        $http.get('api.php', {
+            params: {
+                'controller': 'Entry',
+                'action': 'delete',
+                'key': data.key
+            }
+        }).success(function () {
+            $scope.parent.load();
+            $modalInstance.close();
+            $scope.parent.alerts.push({type: "success", msg: "Entry deleted"});
+        }).error(function () {
+            $scope.parent.alerts.push({type: "danger", msg: "Request failed"});
+        });
+    };
 
     $scope.close = function () {
         $modalInstance.close();

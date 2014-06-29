@@ -8,4 +8,8 @@ class CacheEntry extends Base implements \Interfaces\Model {
         return apc_fetch($key);
     }
 
+    public function delete($key) {
+        return apc_delete($key);
+    }
+
 }

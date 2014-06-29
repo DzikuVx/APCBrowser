@@ -34,10 +34,19 @@ class Entry extends Base implements \Interfaces\Singleton {
      * @param array $template
      */
     public function get(array $aParams, array &$template) {
-
         $oModel = new CacheEntry();
 
         $template['data'] = $oModel->get($aParams['key']);
+    }
+
+    /**
+     * @param array $aParams
+     * @param array $template
+     */
+    public function delete(array $aParams, array &$template) {
+        $oModel = new CacheEntry();
+
+        $template['success'] = $oModel->delete($aParams['key']);
     }
 
 }
