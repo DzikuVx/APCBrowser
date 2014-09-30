@@ -28,7 +28,12 @@ class CacheIteratorAPC extends Base implements \Interfaces\Model {
     public function processEntries(&$results) {
 
         foreach ($results as &$result) {
-            $result['mtime'] = Formater::formatDateTime($result['mtime']);
+            if (!empty($result['mtime'])) {
+                $result['mtime'] = Formater::formatDateTime($result['mtime']);
+            }
+            if (!empty($result['modified_time'])) {
+                $result['mtime'] = Formater::formatDateTime($result['modified_time']);
+            }
             $result['atime'] = Formater::formatDateTime($result['access_time']);
             $result['ctime'] = Formater::formatDateTime($result['creation_time']);
             $result['nhits'] = $result['num_hits'];

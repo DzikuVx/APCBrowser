@@ -42,10 +42,10 @@ class APCDetector {
     }
 
     public function getApcMode() {
-        if (self::$isApcuAvailable) {
-            return self::APC_MODE_APCU;
-        } else {
+        if (self::$isApcAvailable) {
             return self::APC_MODE_APC;
+        } else {
+            return self::APC_MODE_APCU;
         }
     }
 
